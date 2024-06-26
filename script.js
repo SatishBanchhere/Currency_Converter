@@ -160,7 +160,7 @@ const countryList = {
     ZWD: "ZW",
 };
 
-let BASE_URL = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+let BASE_URL = "https://api.exchangerate-api.com/v4/latest/";
 
 let btn = document.querySelector("form button");
 const dropDowns = document.querySelectorAll(".select-container select");
@@ -214,11 +214,11 @@ const updateExchangeRate = async () => {
     console.log(fromCurr.value);
     console.log(toCurr.value);
 
-    let URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
+    let URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}`;
     let response = await fetch(URL);
     let data = await response.json();
-    console.log(data);
-    let rate = data[toCurr.value.toLowerCase()];
+    console.log(data.rates);
+    let rate = data.rates[toCurr.value.toUpperCase()];
     console.log(rate);
     let finalAmount = amount.value * rate;
     console.log(finalAmount);
